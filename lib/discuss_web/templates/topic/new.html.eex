@@ -1,0 +1,8 @@
+<section>
+
+    <form>
+        <input placeholder="Enter a title" />
+        <button type="submit"> Add </button>
+    </form>
+
+</section
