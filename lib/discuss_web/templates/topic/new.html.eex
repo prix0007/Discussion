@@ -1,8 +1,8 @@
-<section>
+<%= form_for @changeset, Routes.topic_path(@conn, :create), fn f -> %>
+ <div class="form-group">
+    <%= text_input f, :title, placeholder: "Title", class: "form-control" %>
+ </div>
 
-    <form>
-        <input placeholder="Enter a title" />
-        <button type="submit"> Add </button>
-    </form>
+ <%= submit "Save Topic", class: "btn btn-primary" %>
 
-</section
+<% end %>
