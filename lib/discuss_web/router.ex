@@ -7,6 +7,7 @@ defmodule DiscussWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Ueberauth
   end
 
   pipeline :api do
@@ -23,6 +24,13 @@ defmodule DiscussWeb.Router do
     # put "/topics/:id", TopicController, :update
     # delete "/topics/:id", TopicController, :delete
     resources "/", TopicController # can simplify all the routes if are in convention
+  end
+
+  scope "/auth", DiscussWeb do
+    pipe_through :browser
+
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
   end
 
   # Other scopes may use custom stacks.
