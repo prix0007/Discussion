@@ -12,9 +12,20 @@
     <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
   <body>
-    <header>
-      <nav role="navigation" class="nav-wrapper teal lighten-2">
+    <header class="teal lighten-2">
+      <nav role="navigation" class="nav-wrapper teal lighten-2 container">
         <h2 class="brand-logo center">Discussions</h2>
+        <ul class="right">
+          <%= if @conn.assigns[:user] do %>
+            <li>
+              <%= link "Sign Out", to: Routes.auth_path(@conn, :signout) %>
+            </li>
+          <% else %>
+            <li>
+              <%= link "Sign in with Github", to: Routes.auth_path(@conn, :request, "github") %>
+            </li>
+          <% end %>
+        </ul>
       </nav>
     </header>
     <main role="main" class="container">

@@ -6,7 +6,7 @@ defmodule DiscussWeb.AuthController do
   alias Discuss.User
   alias Discuss.Repo
 
-  def callback(%{assigns: %{ueberauth_auth: auth }} = conn, params) do
+  def callback(%{assigns: %{ueberauth_auth: auth }} = conn, _params) do
     user_params = %{token: auth.credentials.token, email: auth.info.email, provider: "github"}
     changeset = User.changeset(%User{}, user_params)
 
@@ -24,6 +24,13 @@ defmodule DiscussWeb.AuthController do
         |>put_flash(:error, "Error in siginig you in")
         |> redirect(to: Routes.topic_path(conn, :index))
     end
+  end
+
+  def signout(conn, _params) do
+    conn
+    |> configure_session(drop: true)
+    |> put_flash(:info, "Successfully Logout")
+    |> redirect(to: Routes.topic_path(conn, :index))
   end
 
   defp insert_or_update_user(changeset) do
