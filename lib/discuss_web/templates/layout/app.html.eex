@@ -13,7 +13,7 @@
   </head>
   <body>
     <header class="teal lighten-2">
-      <nav role="navigation" class="nav-wrapper teal lighten-2 container">
+      <nav role="navigation" class="nav-wrapper transparent z-depth-1 container">
         <h2 class="brand-logo center">Discussions</h2>
         <ul class="right">
           <%= if @conn.assigns[:user] do %>
